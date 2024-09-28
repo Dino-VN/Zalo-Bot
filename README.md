@@ -51,6 +51,8 @@
 
 </details>
 
+---
+
 ### Setup .env
 Hãy tạo file .env với nội dung
 <details>
@@ -63,3 +65,11 @@ Hãy tạo file .env với nội dung
   UserAgent = ""
   ```
 </details>
+
+---
+### Chưa cài NodeJS, Deno hoặc Bun ?????
+[NodeJS](https://nodejs.org/en/download/package-manager)
+
+[Deno](https://deno.com/)
+
+[Bun](https://bun.sh/)
