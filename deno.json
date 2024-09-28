@@ -1,0 +1,6 @@
+{
+  "imports": { "zca-js": "npm:zca-js@^1.3.4" },
+  "deno": {
+    "version": "^1.46.3"
+  }
+}
