@@ -63,6 +63,8 @@ Hãy tạo file .env với nội dung
   Cookie = ""
   IMEI = ""
   UserAgent = ""
+  # Không bắt buộc:
+  SelfListen = false
   ```
 </details>
 

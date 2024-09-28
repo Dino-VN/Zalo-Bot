@@ -10,14 +10,8 @@ export async function LoadEnv() {
   }
   // Kiểm tra môi trường Node.js
   else if (typeof process !== "undefined" && process.versions && process.versions.node) {
-    const fs = await import("node:fs");
-    const envFile = fs.readFileSync("./.env");
-    const env = process.env;
-    for (const envLine of envFile.toString().split("\n")) {
-      if (!envLine.includes("=")) continue; // Bỏ qua dòng không chứa dấu '='
-      const [name, val] = envLine.split("=");
-      env[name.trim()] = val.trim(); // Cắt bỏ khoảng trắng dư thừa
-    }
+    await import("dotenv/config")
+    const env = process.env
     globalThis.env = env;
   }
   // Không xác định được môi trường

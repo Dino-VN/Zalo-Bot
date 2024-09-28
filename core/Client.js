@@ -17,7 +17,7 @@ async function StartBot() {
       userAgent: globalThis.env["UserAgent"],
     },
     {
-      selfListen: false,
+      selfListen: globalThis.env["SelfListen"] || false,
       checkUpdate: true,
     },
   );
