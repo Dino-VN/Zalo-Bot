@@ -60,11 +60,12 @@ Hãy tạo file .env với nội dung
 
   ```text
   PREFIX=!
-  Cookie = ""
-  IMEI = ""
-  UserAgent = ""
+  COOKIE=
+  IMEI=
+  USER_AGENT=
   # Không bắt buộc:
-  SelfListen = false
+  SELFLISTEN=false
+  CHECKUPDATE=false
   ```
 </details>
 
