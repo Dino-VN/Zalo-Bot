@@ -1,12 +1,18 @@
-const requestCountTime = 2
+const requestCountTime = 2;
 
 export default {
   name: "message",
-  execute:  function(message, api)  {
-    const prefix = globalThis.env["PREFIX"]
-    if (!message.content.startsWith(prefix)) return;
-    const args = message.content.slice(prefix.length).trim().split(/\s|\n/);
+  execute: function(message, api) {
+    const prefix = "!";
+    
+    // Kiểm tra nếu message.content là chuỗi
+    if (typeof message.content === 'string') {
+      if (!message.content.startsWith(prefix)) return;
+    } else if (typeof message.content === 'object') {
+      return;
+    }
 
+    const args = message.content.slice(prefix.length).trim().split(/\s|\n/);
     const cmd = args.shift().toLowerCase();
     if (cmd.length === 0) return;
 
@@ -29,7 +35,6 @@ export default {
     const defaultCooldownDuration = 5;
     const cooldownAmount = (command.cooldown || defaultCooldownDuration) * 1000;
 
-    // console.log(requestCount);
     if (requestCount.get(message.senderID) == 1) return;
 
     if (!timestamps) return;
@@ -44,17 +49,12 @@ export default {
       );
 
       if (now < expirationTime) {
-        // const expiredTimestamp = Math.round(expirationTime / 1000);
-        return message
-          .send(
-            `Xin chờ, bạn đang dùng lệnh \`${command_name}\` quá nhanh. Bạn có thể dùng lại sau ${(
-              (expirationTime - now) /
-              1000
-            ).toFixed(0)}s.`
-          )
-          // .then((msg) => {
-          //   setTimeout(() => msg.unsend(), 10 * 1000);
-          // });
+        return message.send(
+          `Xin chờ, bạn đang dùng lệnh \`${command_name}\` quá nhanh. Bạn có thể dùng lại sau ${(
+            (expirationTime - now) /
+            1000
+          ).toFixed(0)}s.`
+        );
       }
     }
 
@@ -68,4 +68,4 @@ export default {
 
     command.onCall(api, message, args);
   }
-}
+};

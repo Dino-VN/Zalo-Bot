@@ -1,20 +1,32 @@
-import { MessageType } from "zca-js";
+import { MessageType } from "../zca-js/dist/index.js";
 
 function UserMessage(api, event) {
   function send(content, threadId) {
     return new Promise((resolve, reject) => {
-      api.sendMessage(content, threadId, MessageType.DirectMessage)
-        .then((t) => {
-          const rdata = {
-            messageId: t.message.msgId,
-            send: (c) => {
-              return send(c, threadId);
-            },
-          };
-          resolve(rdata);
-        }).catch((e) => reject(new Error(e)));
+        api.sendMessage(content, threadId, MessageType.DirectMessage)
+            .then((t) => {
+                if (t && t.message && t.message.msgId) {
+                    const rdata = {
+                        messageId: t.message.msgId,
+                        send: (c) => {
+                            return send(c, threadId);
+                        },
+                    };
+                    resolve(rdata);
+                } else {
+                    resolve({
+                        messageId: null, 
+                        send: (c) => {
+                            return send(c, threadId);
+                        },
+                    });
+                }
+            })
+            .catch((e) => {
+                reject(new Error(`API error: ${e.message}`));
+            });
     });
-  }
+ }
   const data = {
     user: {
       id: event.threadId,
@@ -49,18 +61,30 @@ async function GroupMessage(api, event) {
   const group = await api.getGroupInfo(event.threadId);
   function send(content, threadId) {
     return new Promise((resolve, reject) => {
-      api.sendMessage(content, threadId, MessageType.GroupMessage)
-        .then((t) => {
-          const rdata = {
-            messageId: t.message.msgId,
-            send: (c) => {
-              return send(c, threadId);
-            },
-          };
-          resolve(rdata);
-        }).catch((e) => reject(new Error(e)));
+        api.sendMessage(content, threadId, MessageType.GroupMessage)
+            .then((t) => {
+                if (t && t.message && t.message.msgId) {
+                    const rdata = {
+                        messageId: t.message.msgId,
+                        send: (c) => {
+                            return send(c, threadId);
+                        },
+                    };
+                    resolve(rdata);
+                } else {
+                    resolve({
+                        messageId: null, 
+                        send: (c) => {
+                            return send(c, threadId);
+                        },
+                    });
+                }
+            })
+            .catch((e) => {
+                reject(new Error(`API error: ${e.message}`));
+            });
     });
-  }
+ }
   const data = {
     user: {
       id: event.threadId,
