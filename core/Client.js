@@ -1,4 +1,4 @@
-import { Zalo } from "zca-js";
+import { Zalo } from "../zca-js/dist/index.js";
 import { EventFormat } from "./ClientEvent.js";
 import fs from "node:fs";
 import { LoadEnv } from "./util/Env.js";
@@ -17,8 +17,8 @@ async function StartBot() {
       userAgent: globalThis.env["UserAgent"],
     },
     {
-      selfListen: globalThis.env["SelfListen"] || false,
-      checkUpdate: true,
+      selfListen: globalThis.env["SELFLISTEN"],
+      checkUpdate: globalThis.env["CHECKUPDATE"],
     },
   );
 
