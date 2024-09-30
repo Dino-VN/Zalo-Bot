@@ -1,9 +1,10 @@
-import EventEmitter from "events";
+import EventEmitter from "node:events";
 import WebSocket from "ws";
 import { appContext } from "../context.js";
 import { initializeGroupEvent } from "../models/GroupEvent.js";
 import { GroupMessage, Message, Reaction, Undo } from "../models/index.js";
 import { decodeEventData, getGroupEventType, logger } from "../utils.js";
+import { Buffer } from "node:buffer";
 export class Listener extends EventEmitter {
     constructor(url) {
         super();

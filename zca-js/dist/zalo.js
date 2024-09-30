@@ -23,6 +23,7 @@ import { sendMessageFactory } from "./apis/sendMessage.js";
 import { getCookieFactory } from "./apis/getCookie.js";
 import { removeMessageFactory } from "./apis/deleteMessage.js";
 import { getUserInfoFactory } from "./apis/getUserInfo.js";
+import { sendRemoteVideoFactory } from "./apis/sendRemoteVideo.js";
 export class Zalo {
     constructor(credentials, options) {
         this.enableEncryptParam = true;
@@ -129,5 +130,6 @@ export class API {
             zpw_type: Zalo.API_TYPE,
         }));
         this.getUserInfo = getUserInfoFactory(this);
+        this.sendRemoteVideo = sendRemoteVideoFactory(this);
     }
 }

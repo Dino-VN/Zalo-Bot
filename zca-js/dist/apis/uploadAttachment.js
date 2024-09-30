@@ -1,5 +1,5 @@
 import FormData from "form-data";
-import fs from "fs";
+import fs from "node:fs";
 import { appContext } from "../context.js";
 import { Zalo, ZaloApiError } from "../index.js";
 import { MessageType } from "../models/Message.js";

@@ -1,7 +1,8 @@
 import path from "path";
-import fs from "fs";
+import fs from "node:fs";
 import axios from "axios";
 const cache = './.temp';
+import { MessageType } from "zca-js";
 
 async function stream(url, type, title) {
     try {
@@ -65,10 +66,23 @@ export default {
         const statistics = response.data.statistics;
         
         // Stream the video
-        const videoPath = await stream(videoUrl, "mp4", title);
+        // const videoPath = await stream(videoUrl, "mp4", title);
+
+        api.sendRemoteVideo(
+          videoUrl,
+          "https://files.catbox.moe/34xdgb.jpeg",
+          1000,
+          event.groupId ? event.groupId : event.user.id,
+          event.groupId ? MessageType.GroupMessage : MessageType.DirectMessage,
+          1280,
+          720,
+          {
+            text: `${title}\n\n❤ ${formatted(statistics.like)} 💬 ${formatted(statistics.comment)} 🔁 ${formatted(statistics.share)}`,
+          }
+        );
 
         // Send video through the event
-        await event.send({ msg: `${title}\n\n❤ ${formatted(statistics.like)} 💬 ${formatted(statistics.comment)} 🔁 ${formatted(statistics.share)}`, attachments: [videoPath] });
+        // await event.send({ msg: `${title}\n\n❤ ${formatted(statistics.like)} 💬 ${formatted(statistics.comment)} 🔁 ${formatted(statistics.share)}`, attachments: [videoPath] });
       } else {
         console.error("No media URL found in API response.");
       }

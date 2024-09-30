@@ -1,12 +1,13 @@
 import cryptojs from "crypto-js";
-import crypto from "crypto";
+import crypto from "node:crypto";
 import { appContext } from "./context.js";
-import fs from "fs";
+import fs from "node:fs";
 import sharp from "sharp";
 import pako from "pako";
 import SparkMD5 from "spark-md5";
 import path from "path";
 import { GroupEventType } from "./models/GroupEvent.js";
+import { Buffer } from "node:buffer";
 export function getSignKey(type, params) {
     let n = [];
     for (let s in params) {
