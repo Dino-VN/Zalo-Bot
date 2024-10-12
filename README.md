@@ -6,7 +6,7 @@
 ### Cài và chạy
 
 <details>
-<summary>Nhấp vào đây để mở rộng hướng dẫn cài đặt Node.js</summary>
+<summary>Nhấp vào đây để mở rộng hướng dẫn chạy bằng Node.js</summary>
 
 ## Node.js
 
@@ -23,7 +23,7 @@
 </details>
 
 <details>
-<summary>Nhấp vào đây để mở rộng hướng dẫn cài đặt Deno</summary>
+<summary>Nhấp vào đây để mở rộng hướng dẫn chạy bằng Deno</summary>
 
 ## Deno
 
@@ -35,7 +35,7 @@
 </details>
 
 <details>
-<summary>Nhấp vào đây để mở rộng hướng dẫn cài đặt Bun</summary>
+<summary>Nhấp vào đây để mở rộng hướng dẫn chạy bằng Bun</summary>
 
 ## Bun
 
