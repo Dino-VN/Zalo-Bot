@@ -5,7 +5,7 @@ import fs from "node:fs";
 import sharp from "sharp";
 import pako from "pako";
 import SparkMD5 from "spark-md5";
-import path from "path";
+import path from "node:path";
 import { GroupEventType } from "./models/GroupEvent.js";
 import { Buffer } from "node:buffer";
 export function getSignKey(type, params) {

@@ -65,7 +65,6 @@ Hãy tạo file .env với nội dung
   USER_AGENT=
   # Không bắt buộc:
   SELFLISTEN=false
-  CHECKUPDATE=false
   ```
 </details>
 

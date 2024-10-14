@@ -2,6 +2,7 @@ import { Zalo } from "../zca-js/dist/index.js";
 import { EventFormat } from "./ClientEvent.js";
 import fs from "node:fs";
 import { LoadEnv } from "./util/Env.js";
+import "dotenv/config"
 
 globalThis.commands = new Map();
 globalThis.aliases = new Map();
@@ -12,13 +13,13 @@ async function StartBot() {
 
   const zalo = new Zalo(
     {
-      cookie: globalThis.env["Cookie"],
+      cookie: globalThis.env["COOKIE"],
       imei: globalThis.env["IMEI"],
-      userAgent: globalThis.env["UserAgent"],
+      userAgent: globalThis.env["USER_AGENT"],
     },
     {
       selfListen: globalThis.env["SELFLISTEN"],
-      checkUpdate: globalThis.env["CHECKUPDATE"],
+      checkUpdate: false,
     },
   );
 

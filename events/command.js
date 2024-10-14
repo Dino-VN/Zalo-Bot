@@ -2,13 +2,13 @@ const requestCountTime = 2;
 
 export default {
   name: "message",
-  execute: function(message, api) {
-    const prefix = "!";
-    
+  execute: function (message, api) {
+    const prefix = globalThis.env["PREFIX"];
+
     // Kiểm tra nếu message.content là chuỗi
-    if (typeof message.content === 'string') {
+    if (typeof message.content === "string") {
       if (!message.content.startsWith(prefix)) return;
-    } else if (typeof message.content === 'object') {
+    } else if (typeof message.content === "object") {
       return;
     }
 
@@ -67,5 +67,5 @@ export default {
     setTimeout(() => timestamps.delete(message.senderID), cooldownAmount);
 
     command.onCall(api, message, args);
-  }
+  },
 };
